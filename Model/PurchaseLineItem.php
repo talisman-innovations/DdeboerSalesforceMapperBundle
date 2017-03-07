@@ -165,6 +165,11 @@ class PurchaseLineItem extends AbstractModel
      * @Salesforce\Field(name="Source_System__c")
      */
     protected $sourceSystem;
+    /**
+     * @var \DateTime
+     * @Salesforce\Field(name="Event_Date_Time__c")
+     */
+    protected $eventDate;
     
     
     public function getAttachedContentDocuments() {
@@ -417,6 +422,14 @@ class PurchaseLineItem extends AbstractModel
 
     public function setSourceSystem($sourceSystem) {
         $this->sourceSystem = $sourceSystem;
+    }
+    
+    public function getEventDate() {
+        return $this->eventDate;
+    }
+
+    public function setEventDate(\DateTime $eventDate) {
+        $this->eventDate = $eventDate;
     }
 
 
