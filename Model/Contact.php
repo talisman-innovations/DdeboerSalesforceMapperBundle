@@ -13,6 +13,65 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  */
 class Contact extends AbstractModel
 {
+    
+
+//    /**
+//     * @var Purchase
+//     * @Salesforce\Relation(field="id", name="Purchase",
+//     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Purchase")
+//     */
+//    protected $purchases;
+    
+    /**
+     * @var double
+     * @Salesforce\Field(name="Purchase_Count__c")
+     */
+    protected $purchaseCount;
+
+    /**
+     * @var string
+     * @Salesforce\Field(name="Netsuite_ID__c")
+     */
+    protected $netsuiteId;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Lightspeed_ID__c")
+     */
+    protected $lightspeedId;
+    /**
+     * @var string
+     * @Salesforce\Field(name="NAM_ID__c")
+     */
+    protected $namId;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Reading_Room_ID__c")
+     */
+    protected $readingRoomId;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Tide_ID__c")
+     */
+    protected $tideId;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Ref_Number__c")
+     */
+    protected $refNumber;
+    /**
+     * @var string
+     * @Salesforce\Field(name="NAM_ID_Ticket_No__c")
+     */
+    protected $namIDTicketNo;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Origin__c")
+     */
+    protected $origin;
+    
+    
+    
+    
     /**
      * @var Account
      * @Salesforce\Relation(field="AccountId", name="Account",
@@ -30,6 +89,12 @@ class Contact extends AbstractModel
      * @Salesforce\Field(name="AccountId")
      */
     protected $accountId;
+    
+    /**
+     * @var string
+     * @Salesforce\Field(name="Id")
+     */
+    protected $id;
     
     /**
      * @var tnsQueryResult
@@ -1015,4 +1080,89 @@ class Contact extends AbstractModel
     {
         $this->title = $title;
     }
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getNetsuiteId() {
+        return $this->netsuiteId;
+    }
+
+    public function getLightspeedId() {
+        return $this->lightspeedId;
+    }
+
+    public function getNamId() {
+        return $this->namId;
+    }
+
+    public function getReadingRoomId() {
+        return $this->readingRoomId;
+    }
+
+    public function getTideId() {
+        return $this->tideId;
+    }
+
+    public function getRefNumber() {
+        return $this->refNumber;
+    }
+
+    public function getNamIDTicketNo() {
+        return $this->namIDTicketNo;
+    }
+
+    public function getOrigin() {
+        return $this->origin;
+    }
+
+    public function getIsDeleted() {
+        return $this->isDeleted;
+    }
+
+    public function setNetsuiteId($netsuiteId) {
+        $this->netsuiteId = $netsuiteId;
+    }
+
+    public function setLightspeedId($lightspeedId) {
+        $this->lightspeedId = $lightspeedId;
+    }
+
+    public function setNamId($namId) {
+        $this->namId = $namId;
+    }
+
+    public function setReadingRoomId($readingRoomId) {
+        $this->readingRoomId = $readingRoomId;
+    }
+
+    public function setTideId($tideId) {
+        $this->tideId = $tideId;
+    }
+
+    public function setRefNumber($refNumber) {
+        $this->refNumber = $refNumber;
+    }
+
+    public function setNamIDTicketNo($namIDTicketNo) {
+        $this->namIDTicketNo = $namIDTicketNo;
+    }
+
+    public function setOrigin($origin) {
+        $this->origin = $origin;
+    }
+
+    public function getPurchases() {
+        return $this->purchases;
+    }
+
+    public function setPurchases($purchases) {
+        $this->purchases = $purchases;
+    }
+
 }

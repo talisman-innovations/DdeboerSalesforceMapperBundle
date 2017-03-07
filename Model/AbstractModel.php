@@ -36,7 +36,7 @@ abstract class AbstractModel
     protected $createdDate;
 
     /**
-     * @var strng
+     * @var string
      * @Salesforce\Field(name="LastModifiedById")
      */
     protected $lastModifiedById;

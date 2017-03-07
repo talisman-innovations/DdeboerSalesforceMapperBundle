@@ -21,11 +21,11 @@ class Account extends AbstractModel
      */
     protected $accountContactRoles;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="AccountNumber")
-     */
-    protected $accountNumber;
+//    /**
+//     * @var string
+//     * @Salesforce\Field(name="AccountNumber")
+//     */
+//    protected $accountNumber;
     
     /**
      * @var float
@@ -279,15 +279,15 @@ class Account extends AbstractModel
         return $this->accountContactRoles;
     }
 
-    public function getAccountNumber()
-    {
-        return $this->accountNumber;
-    }
-
-    public function setAccountNumber($accountNumber)
-    {
-        $this->accountNumber = $accountNumber;
-    }
+//    public function getAccountNumber()
+//    {
+//        return $this->accountNumber;
+//    }
+//
+//    public function setAccountNumber($accountNumber)
+//    {
+//        $this->accountNumber = $accountNumber;
+//    }
 
     public function getAnnualRevenue()
     {
