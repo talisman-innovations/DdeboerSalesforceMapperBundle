@@ -58,11 +58,7 @@ class Contact extends AbstractModel
      * @Salesforce\Field(name="Ref_Number__c")
      */
     protected $refNumber;
-    /**
-     * @var string
-     * @Salesforce\Field(name="NAM_ID_Ticket_No__c")
-     */
-    protected $namIDTicketNo;
+
     /**
      * @var string
      * @Salesforce\Field(name="Origin__c")
