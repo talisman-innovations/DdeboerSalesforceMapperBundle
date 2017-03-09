@@ -266,8 +266,8 @@ class Booking extends AbstractModel
         $this->case = $sfCase;
     }
 
-    public function setCaseId($sfCaseId) {
-        $this->caseId = $sfCaseId;
+    public function setCaseId($caseId) {
+        $this->caseId = $caseId;
     }
 
     public function setAttachedContentDocuments(tnsQueryResult $attachedContentDocuments) {
