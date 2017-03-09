@@ -37,11 +37,6 @@ class BookingLineItem extends AbstractModel
     protected $accessionNumber;
     /**
      * @var string
-     * @Salesforce\Field(name="Accession_Number__c")
-     */
-    protected $accessionNumber;
-    /**
-     * @var string
      * @Salesforce\Field(name="Description__c")
      */
     protected $description;
@@ -67,10 +62,6 @@ class BookingLineItem extends AbstractModel
 
     public function getBookingId() {
         return $this->bookingId;
-    }
-
-    public function getAccessionNumber() {
-        return $this->accessionNumber;
     }
 
     public function getAccessionNumber() {
@@ -105,9 +96,6 @@ class BookingLineItem extends AbstractModel
         $this->accessionNumber = $accessionNumber;
     }
 
-    public function setAccessionNumber($accessionNumber) {
-        $this->accessionNumber = $accessionNumber;
-    }
 
     public function setDescription($description) {
         $this->description = $description;
