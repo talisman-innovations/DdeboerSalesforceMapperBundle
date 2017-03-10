@@ -55,7 +55,13 @@ class BookingLineItem extends AbstractModel
      * @Salesforce\Field(name="IsDeleted")
      */
     protected $isDeleted;
-    
+    /**
+     * @var string
+     * @Salesforce\Field(name="Object_ID__c")
+     */
+    protected $objectID;
+
+
     public function getBooking() {
         return $this->booking;
     }
@@ -111,6 +117,14 @@ class BookingLineItem extends AbstractModel
 
     public function setIsDeleted($isDeleted) {
         $this->isDeleted = $isDeleted;
+    }
+
+    public function getObjectID() {
+        return $this->objectID;
+    }
+
+    public function setObjectID($objectID) {
+        $this->objectID = $objectID;
     }
 
 

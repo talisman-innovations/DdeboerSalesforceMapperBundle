@@ -57,7 +57,24 @@ class SfCase extends AbstractModel {
      * @Salesforce\Field(name="Subject")
      */
     protected $subject;
-    
+    /**
+     * @Salesforce\Field(name="Driver__c")
+     */
+    protected $driver;
+    /**
+     * @Salesforce\Field(name="Case_Opened__c")
+     */
+    protected $opened;
+    /**
+     * @var \DateTime
+     * @Salesforce\Field(name="Type")
+     */
+    protected $type;
+    /**
+     * @Salesforce\Field(name="OwnerId")
+     */
+    protected $ownerId;
+
     public function __construct() {
         $this->status = 'New';
         $this->priority = 'Medium';
@@ -135,5 +152,39 @@ class SfCase extends AbstractModel {
     function setSubject($subject) {
         $this->subject = $subject;
     }
+
+    public function getDriver() {
+        return $this->driver;
+    }
+
+    public function setDriver($driver) {
+        $this->driver = $driver;
+    }
+
+    public function getOpened() {
+        return $this->opened;
+    }
+
+    public function setOpened($opened) {
+        $this->opened = $opened;
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setType($type) {
+        $this->type = $type;
+    }
+
+    public function getOwnerId() {
+        return $this->ownerId;
+    }
+
+    public function setOwnerId($ownerId) {
+        $this->ownerId = $ownerId;
+    }
+
+
 
 }
