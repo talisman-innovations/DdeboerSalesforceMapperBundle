@@ -199,12 +199,7 @@ class User extends AbstractModel
      */
     protected $lastLoginDate;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="LastPasswordChangeDate")
-     */
-    protected $lastPasswordChangeDate;
-
+    
     /**
      * @var string
      */
@@ -726,11 +721,6 @@ class User extends AbstractModel
     public function getLastLoginDate()
     {
         return $this->lastLoginDate;
-    }
-
-    public function getLastPasswordChangeDate()
-    {
-        return $this->lastPasswordChangeDate;
     }
 
     public function getLocaleSidKey()
