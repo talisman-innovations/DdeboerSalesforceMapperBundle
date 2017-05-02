@@ -141,6 +141,11 @@ class Booking extends AbstractModel
      * @Salesforce\Field(name="Table_Name__c")
      */
     protected $tableName;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Source_System_ID__c")
+     */
+    protected $sourceSystemId;    
 
     public function getContact() {
         return $this->contact;
@@ -350,6 +355,12 @@ class Booking extends AbstractModel
         $this->tableName = $tableName;
     }
 
+    function getSourceSystemId() {
+        return $this->sourceSystemId;
+    }
 
-    
+    function setSourceSystemId($sourceSystemId) {
+        $this->sourceSystemId = $sourceSystemId;
+    }
+  
 }

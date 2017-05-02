@@ -60,6 +60,11 @@ class BookingLineItem extends AbstractModel
      * @Salesforce\Field(name="Object_ID__c")
      */
     protected $objectID;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Source_System_ID__c")
+     */
+    protected $sourceSystemId; 
 
 
     public function getBooking() {
