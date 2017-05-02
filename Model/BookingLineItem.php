@@ -132,6 +132,14 @@ class BookingLineItem extends AbstractModel
         $this->objectID = $objectID;
     }
 
+    function getSourceSystemId() {
+        return $this->sourceSystemId;
+    }
+
+    function setSourceSystemId($sourceSystemId) {
+        $this->sourceSystemId = $sourceSystemId;
+    }
+
 
 
   
