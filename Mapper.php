@@ -12,7 +12,7 @@ use Ddeboer\Salesforce\MapperBundle\Event\BeforeSaveEvent;
 use Ddeboer\Salesforce\MapperBundle\UnitOfWork;
 use Doctrine\Common\Cache\Cache;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
+use Symfony\Component\Filesystem\LockHandler;
 
 /**
  * This mapper makes interaction with the Salesforce API using full objects
@@ -57,7 +57,7 @@ class Mapper
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
-
+    
     protected $unitOfWork;
 
     protected $objectDescriptions = array();
@@ -75,6 +75,16 @@ class Mapper
         $this->annotationReader = $annotationReader;
         $this->cache = $cache;
         $this->unitOfWork = new UnitOfWork($this, $this->annotationReader);
+    }
+
+    /**
+     * Get PHPForceSoapClient
+     * 
+     * @return type ClientInterface
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 
     /**
