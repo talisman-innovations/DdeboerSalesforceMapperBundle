@@ -147,7 +147,20 @@ class GiftAid extends AbstractModel
      * @Salesforce\Field(name="Verbal_Confirmation_Sent_Date__c")
      */
     protected $verbalConfirmationSentDate;
+    /**
+     * @var DateTime
+     * @Salesforce\Field(name="Start_Date__c")
+     */
+    protected $startDate;
+            
+    public function getStartDate() {
+        return $this->startDate;
+    }
 
+    public function setStartDate(DateTime $startDate) {
+        $this->startDate = $startDate;
+    }
+        
     public function getValid() {
         return $this->valid;
     }
@@ -376,9 +389,10 @@ class GiftAid extends AbstractModel
         return $this->mandateDate;
     }
 
-    public function setMandateDate(\DateTime $mandateDate) {
+    public function setMandateDate(DateTime $mandateDate) {
         $this->mandateDate = $mandateDate;
     }
 
+    
 
 }
