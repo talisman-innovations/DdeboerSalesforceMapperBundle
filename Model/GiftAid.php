@@ -90,11 +90,7 @@ class GiftAid extends AbstractModel
      * @Salesforce\Field(name="Mandate_Date__c")
      */
     protected $mandateDate;
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
-    protected $name;
+   
     /**
      * @var tnsQueryResult
      */
@@ -157,7 +153,21 @@ class GiftAid extends AbstractModel
      * @Salesforce\Field(name="End_Date__c")
      */
     protected $endDate;
+    /**
+     * @var string
+     * @Salesforce\Field(name="Id")
+     */
+    protected $id;
     
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+        
     public function getEndDate() {
         return $this->endDate;
     }
@@ -270,14 +280,6 @@ class GiftAid extends AbstractModel
 
     public function setNotes(tnsQueryResult $notes) {
         $this->notes = $notes;
-    }
-    
-    public function getName() {
-        return $this->name;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
     }
         
     public function getContact() {
