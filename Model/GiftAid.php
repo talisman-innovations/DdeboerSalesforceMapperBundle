@@ -152,7 +152,21 @@ class GiftAid extends AbstractModel
      * @Salesforce\Field(name="Start_Date__c")
      */
     protected $startDate;
-            
+    /**
+     * @var DateTime
+     * @Salesforce\Field(name="End_Date__c")
+     */
+    protected $endDate;
+    
+    public function getEndDate() {
+        return $this->endDate;
+    }
+
+    public function setEndDate(DateTime $endDate) {
+        $this->endDate = $endDate;
+    }
+
+                
     public function getStartDate() {
         return $this->startDate;
     }
