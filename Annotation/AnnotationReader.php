@@ -54,7 +54,7 @@ class AnnotationReader
      * Get Salesforce object annotation
      * 
      * @param string $model
-     * @return Object
+     * @return AnnotationObject
      */
     public function getSalesforceObject($model)
     {
@@ -82,8 +82,8 @@ class AnnotationReader
             'fields'    => array()
         );
 
-        $classAnnotation = $this->reader->getClassAnnotation($reflClass, 
-            'Ddeboer\Salesforce\MapperBundle\Annotation\Object'
+        $classAnnotation = $this->reader->getClassAnnotation($reflClass,
+            'Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationObject'
         );
         if (isset($classAnnotation->name)) {
             $salesforceProperties['object'] = $classAnnotation;

@@ -93,7 +93,7 @@ class MapperTest extends \PHPUnit_Framework_TestCase
             ->method('getSalesforceObject')
             ->with(new Model\Task())
             ->will($this->returnValue(
-                new Annotation\Object(array('name' => 'Task'))
+                new Annotation\AnnotationObject(array('name' => 'Task'))
             ));
 
         $mapper = new Mapper($client, $annotationReader);
