@@ -7,7 +7,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 /**
  * An attachment in Salesforce
  * 
- * @Salesforce\Object(name="Attachment")
+ * @Salesforce\AnnotationObject(name="Attachment")
  */
 class Attachment extends AbstractModel
 {   

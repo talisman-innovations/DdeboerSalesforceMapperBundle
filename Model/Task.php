@@ -7,7 +7,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 /**
  * Salesforce standard task object
  *
- * @Salesforce\Object(name="Task")
+ * @Salesforce\AnnotationObject(name="Task")
  */
 class Task extends AbstractModel
 {

@@ -10,7 +10,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  * You can extend this class to incorporate custom fields on the Salesforce
  * opportunity object.
  *
- * @Salesforce\Object(name="Opportunity")
+ * @Salesforce\AnnotationObject(name="Opportunity")
  */
 class Opportunity extends AbstractModel
 {

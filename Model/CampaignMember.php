@@ -6,7 +6,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 /**
  * A campaign member
  *
- * @Salesforce\Object(name="CampaignMember")
+ * @Salesforce\AnnotationObject(name="CampaignMember")
  */
 class CampaignMember extends AbstractModel
 {

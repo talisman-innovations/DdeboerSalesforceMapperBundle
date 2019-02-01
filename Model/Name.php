@@ -10,7 +10,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  * You can extend this class to incorporate custom fields on the Salesforce
  * name object.
  * 
- * @Salesforce\Object(name="Name")
+ * @Salesforce\AnnotationObject(name="Name")
  */
 class Name 
 {
