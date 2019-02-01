@@ -13,7 +13,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\Object(name="Booking__c")
+ * @Salesforce\AnnotationObject(name="Booking__c")
  */
 class Booking extends AbstractModel
 {

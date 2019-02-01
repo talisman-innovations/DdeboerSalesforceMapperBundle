@@ -13,7 +13,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\Object(name="Purchase__c")
+ * @Salesforce\AnnotationObject(name="Purchase__c")
  */
 class Purchase extends AbstractModel
 {

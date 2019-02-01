@@ -11,7 +11,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 /**
  * Salesforce standard case object
  *
- * @Salesforce\Object(name="Case")
+ * @Salesforce\AnnotationObject(name="Case")
  */
 class SfCase extends AbstractModel {
     

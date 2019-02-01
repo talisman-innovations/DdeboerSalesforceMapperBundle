@@ -13,7 +13,7 @@ use DateTime;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\Object(name="Gift_Aid_Mandate__c")
+ * @Salesforce\AnnotationObject(name="Gift_Aid_Mandate__c")
  */
 class GiftAid extends AbstractModel
 {

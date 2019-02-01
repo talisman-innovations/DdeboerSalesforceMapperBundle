@@ -5,7 +5,7 @@ namespace Ddeboer\Salesforce\MapperBundle\Tests\Mock;
 use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 
 /**
- * @Salesforce\Object(name="Contact")
+ * @Salesforce\AnnotationObject(name="Contact")
  */
 class ContactMock
 {

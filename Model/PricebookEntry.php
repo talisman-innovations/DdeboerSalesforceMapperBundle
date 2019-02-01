@@ -8,7 +8,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  * Represents a product entry (an association between a Pricebook2 and Product2)
  * in a price book
  *
- * @Salesforce\Object(name="PricebookEntry")
+ * @Salesforce\AnnotationObject(name="PricebookEntry")
  * @link http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_objects_pricebookentry.htm
  */
 class PricebookEntry extends AbstractModel

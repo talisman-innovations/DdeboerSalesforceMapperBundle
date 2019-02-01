@@ -24,7 +24,7 @@ use Symfony\Component\Filesystem\LockHandler;
  * extend the standard objects, add the properties and annotate them
  * (using @Salesforce\Field annotations). If you want this mapper to accept
  * completely custom objects, you can extend from Model/AbstractModel, and add
- * a @Salesforce\Object annotation.
+ * a @Salesforce\AnnotationObject annotation.
  *
  * @author David de Boer <david@ddeboer.nl>
  */

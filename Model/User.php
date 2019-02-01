@@ -7,7 +7,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
 /**
  * Salesforce user object
  *
- * @Salesforce\Object(name="User")
+ * @Salesforce\AnnotationObject(name="User")
  */
 class User extends AbstractModel
 {

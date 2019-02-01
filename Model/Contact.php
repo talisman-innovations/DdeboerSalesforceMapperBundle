@@ -9,7 +9,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\Object(name="Contact")
+ * @Salesforce\AnnotationObject(name="Contact")
  */
 class Contact extends AbstractModel
 {
