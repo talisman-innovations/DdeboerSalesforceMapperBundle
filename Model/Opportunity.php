@@ -285,31 +285,6 @@ class Opportunity extends AbstractModel
      * @Salesforce\Field(name="Type")
      */
     protected $type;
-    /**
-     * @var string
-     * @Salesforce\Field(name="npe01__Member_Level__c")
-     */
-    protected $memberLevel;
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="npe01__Membership_End_Date__c")
-     */
-    protected $memberEndDate;
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="npe01__Membership_Start_Date__c")
-     */
-    protected $memberStartDate;
-     /**
-     * @var string
-     * @Salesforce\Field(name="npe01__Membership_Origin__c")
-     */
-    protected $memberOrigin;
-    /**
-     * @var string
-     * @Salesforce\Field(name="Membership_Number__c")
-     */
-    protected $membershipNumber;
     
     /**
      *
@@ -836,46 +811,5 @@ class Opportunity extends AbstractModel
         $this->type = $type;
         return $this;
     }
-    
-    function getMemberLevel() {
-        return $this->memberLevel;
-    }
-
-    function getMemberEndDate() {
-        return $this->memberEndDate;
-    }
-
-    function getMemberStartDate() {
-        return $this->memberStartDate;
-    }
-
-    function getMemberOrigin() {
-        return $this->memberOrigin;
-    }
-
-    function getMembershipNumber() {
-        return $this->membershipNumber;
-    }
-
-    function setMemberLevel($memberLevel) {
-        $this->memberLevel = $memberLevel;
-    }
-
-    function setMemberEndDate(\DateTime $memberEndDate) {
-        $this->memberEndDate = $memberEndDate;
-    }
-
-    function setMemberStartDate(\DateTime $memberStartDate) {
-        $this->memberStartDate = $memberStartDate;
-    }
-
-    function setMemberOrigin($memberOrigin) {
-        $this->memberOrigin = $memberOrigin;
-    }
-
-    function setMembershipNumber($membershipNumber) {
-        $this->membershipNumber = $membershipNumber;
-    }
-
 
 }
