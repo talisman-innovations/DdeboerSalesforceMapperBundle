@@ -32,12 +32,6 @@ class Contact extends AbstractModel
     protected $accountId;
     
     /**
-     * @var string
-     * @Salesforce\Field(name="Id")
-     */
-    protected $id;
-    
-    /**
      * @var tnsQueryResult
      */
     protected $activityHistories;
@@ -1020,14 +1014,6 @@ class Contact extends AbstractModel
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-    
-    public function getId() {
-        return $this->id;
-    }
-
-    public function setId($id) {
-        $this->id = $id;
     }
 
 }
