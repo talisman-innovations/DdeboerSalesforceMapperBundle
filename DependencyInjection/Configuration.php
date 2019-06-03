@@ -17,9 +17,10 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ddeboer_salesforce_mapper');
-        $rootNode
+        $treeBuilder = new TreeBuilder('ddeboer_salesforce_mapper');
+
+        $treeBuilder
+            ->getRootNode()
             ->children()
                 ->scalarNode('cache_driver')->defaultValue('file')->end()
                 ->arrayNode('param_converter')
