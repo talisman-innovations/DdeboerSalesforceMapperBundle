@@ -9,10 +9,8 @@ use Ddeboer\Salesforce\MapperBundle\Annotation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 use Ddeboer\Salesforce\MapperBundle\Query\Builder;
 use Ddeboer\Salesforce\MapperBundle\Event\BeforeSaveEvent;
-use Ddeboer\Salesforce\MapperBundle\UnitOfWork;
 use Doctrine\Common\Cache\Cache;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Filesystem\LockHandler;
 
 /**
  * This mapper makes interaction with the Salesforce API using full objects
