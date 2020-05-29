@@ -2,7 +2,7 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class BeforeSaveEvent extends Event
 {
