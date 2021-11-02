@@ -433,7 +433,7 @@ class Mapper
                      // @todo Implements recursive saving for new related
                      // records, too. This only works for already existing
                      // records.
-                    if (method_exists($value, 'getId') && $value->getId()) {
+                    if ($value && method_exists($value, 'getId') && $value->getId()) {
                         $value = $value->getId();
                         $sObject->{$fieldDescription->getName()} = $value;
                         continue;
