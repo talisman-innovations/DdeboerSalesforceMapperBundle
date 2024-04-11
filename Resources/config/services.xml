@@ -20,6 +20,9 @@
             <argument type="service" id="ddeboer_salesforce_mapper.annotation_reader" />
         </service>
 
+        <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader">
+        </service>
+
         <service id="ddeboer_salesforce_mapper.annotation_reader" class="Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader">
             <argument type="service" id="annotation_reader" />
         </service>
