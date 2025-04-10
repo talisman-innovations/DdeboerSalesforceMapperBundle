@@ -9,7 +9,7 @@ use Ddeboer\Salesforce\MapperBundle\Annotation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 use Ddeboer\Salesforce\MapperBundle\Query\Builder;
 use Ddeboer\Salesforce\MapperBundle\Event\BeforeSaveEvent;
-use Doctrine\Common\Cache\Cache;
+use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -67,7 +67,7 @@ class Mapper
      * @param AnnotationReader $annotationReader
      * @param Cache $cache
      */
-    public function __construct(ClientInterface $client, AnnotationReader $annotationReader, Cache $cache)
+    public function __construct(ClientInterface $client, AnnotationReader $annotationReader, CacheInterface $cache)
     {
         $this->client = $client;
         $this->annotationReader = $annotationReader;
@@ -478,8 +478,8 @@ class Mapper
     {
         $cacheId = sprintf('ddeboer_salesforce_mapper.object_description.%s',
             $objectName);
-        if ($this->cache->contains($cacheId)) {
-            return $this->cache->fetch($cacheId);
+        if ($this->cache->has($cacheId)) {
+            return $this->cache->get($cacheId);
         }
 
         $descriptions = $this->client->describeSObjects(array($objectName));
@@ -488,7 +488,7 @@ class Mapper
         }
 
         $description = /* @var $description DescribeSObjectResult */ $descriptions[0];
-        $this->cache->save($cacheId, $description);
+        $this->cache->set($cacheId, $description);
         return $description;
     }
 
