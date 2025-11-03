@@ -1,18 +1,18 @@
 <?php
 namespace Ddeboer\Salesforce\MapperBundle;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader;
+use Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader;
 
 class UnitOfWork
 {
     protected $mapper;
-    protected $annotationReader;
+    protected $attributeReader;
     protected $identityMap = array();
 
-    public function __construct(Mapper $mapper, AnnotationReader $annotationReader)
+    public function __construct(Mapper $mapper, AttributeReader $attributeReader)
     {
         $this->mapper = $mapper;
-        $this->annotationReader = $annotationReader;
+        $this->attributeReader = $attributeReader;
     }
 
     public function find($modelClass, $id)

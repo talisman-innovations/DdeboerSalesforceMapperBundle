@@ -4,8 +4,9 @@ namespace Ddeboer\Salesforce\MapperBundle;
 
 use Phpforce\SoapClient\ClientInterface;
 use Phpforce\SoapClient\Result;
-use Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader;
-use Ddeboer\Salesforce\MapperBundle\Annotation;
+use Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 use Ddeboer\Salesforce\MapperBundle\Query\Builder;
 use Ddeboer\Salesforce\MapperBundle\Event\BeforeSaveEvent;
@@ -36,11 +37,11 @@ class Mapper
     private $client;
 
     /**
-     * Salesforce annotations reader
+     * Salesforce attribute reader
      *
-     * @var AnnotationReader
+     * @var AttributeReader
      */
-    private $annotationReader;
+    private $attributeReader;
 
     /**
      * Cache
@@ -63,16 +64,16 @@ class Mapper
     /**
      * Construct mapper
      *
-     * @param SoapClient $soapClient
-     * @param AnnotationReader $annotationReader
-     * @param Cache $cache
+     * @param ClientInterface $client Salesforce SOAP client
+     * @param AttributeReader $attributeReader Attribute reader for metadata
+     * @param CacheInterface $cache Cache implementation
      */
-    public function __construct(ClientInterface $client, AnnotationReader $annotationReader, CacheInterface $cache)
+    public function __construct(ClientInterface $client, AttributeReader $attributeReader, CacheInterface $cache)
     {
         $this->client = $client;
-        $this->annotationReader = $annotationReader;
+        $this->attributeReader = $attributeReader;
         $this->cache = $cache;
-        $this->unitOfWork = new UnitOfWork($this, $this->annotationReader);
+        $this->unitOfWork = new UnitOfWork($this, $this->attributeReader);
     }
 
     /**
@@ -117,9 +118,9 @@ class Mapper
      */
     public function count($modelClass, $includeDeleted = false, array $criteria = array())
     {
-        $object = $this->annotationReader->getSalesforceObject($modelClass);
+        $object = $this->attributeReader->getSalesforceObject($modelClass);
         if (null === $object) {
-            throw new \UnexpectedValueException('Model has no Salesforce annotation');
+            throw new \UnexpectedValueException('Model has no Salesforce attribute');
         }
 
         $query = trim("select count() from {$object->name} "
@@ -242,7 +243,7 @@ class Mapper
      */
     public function getObjectDescription($model)
     {
-        $object = $this->annotationReader->getSalesforceObject($model);
+        $object = $this->attributeReader->getSalesforceObject($model);
 
         if (!isset($this->objectDescriptions[$object->name])) {
             $this->objectDescriptions[$object->name] =
@@ -281,7 +282,7 @@ class Mapper
         $modelsWithoutId = array();
 
         foreach ($models as $model) {
-            $object = $this->annotationReader->getSalesforceObject($model);
+            $object = $this->attributeReader->getSalesforceObject($model);
             $sObject = $this->mapToSalesforceObject($model);
             if (isset($sObject->Id) && null !== $sObject->Id) {
                 $objectsToBeUpdated[$object->name][] = $sObject;
@@ -337,7 +338,7 @@ class Mapper
         $reflObject = new \ReflectionObject($model);
 
         // Set Salesforce property values on domain object
-        $fields = $this->annotationReader->getSalesforceFields($modelClass);
+        $fields = $this->attributeReader->getSalesforceFields($modelClass);
         foreach ($fields as $name => $field) {
             if (isset($sObject->{$field->name})) {
                 // Use reflection to set the protected/private properties
@@ -348,7 +349,7 @@ class Mapper
         }
 
         // Set Salesforce relations on domain object
-        $relations = $this->annotationReader->getSalesforceRelations($modelClass);
+        $relations = $this->attributeReader->getSalesforceRelations($modelClass);
         foreach ($relations as $property => $relation) {
 
             // Relation name must be set
@@ -391,15 +392,15 @@ class Mapper
 
         $objectDescription = $this->getObjectDescription($model);
         $reflClass = new \ReflectionClass($model);
-        $mappedProperties = $this->annotationReader->getSalesforceFields($model);
-        $mappedRelations = $this->annotationReader->getSalesforceRelations($model);
+        $mappedProperties = $this->attributeReader->getSalesforceFields($model);
+        $mappedRelations = $this->attributeReader->getSalesforceRelations($model);
         $allMappings = $mappedProperties->toArray() + $mappedRelations;
 
         foreach ($allMappings as $property => $mapping) {
-            if ($mapping instanceof Annotation\Field) {
+            if ($mapping instanceof Field) {
                 $fieldDescription = $objectDescription->getField($mapping->name);
                 $fieldName = $mapping->name;
-            } elseif ($mapping instanceof Annotation\Relation
+            } elseif ($mapping instanceof Relation
                       && $mapping->field) {
                 // Only one-to-one and one-to-many relations will be saved
                 $fieldDescription = $objectDescription->getField($mapping->field);
@@ -429,7 +430,7 @@ class Mapper
                 $reflProperty->setAccessible(true);
                 $value = $reflProperty->getValue($model);
 
-                if ($mapping instanceof Annotation\Relation) {
+                if ($mapping instanceof Relation) {
                      // @todo Implements recursive saving for new related
                      // records, too. This only works for already existing
                      // records.
@@ -508,7 +509,7 @@ class Mapper
      */
     private function getQuerySelectPart($modelClass, $related)
     {
-        $object = $this->annotationReader->getSalesforceObject($modelClass);
+        $object = $this->attributeReader->getSalesforceObject($modelClass);
         $fields = $this->getFields($modelClass, $related);
         $oneToMany = $this->getOneToManySubqueries($modelClass, $related);
 
@@ -537,8 +538,8 @@ class Mapper
     private function getQueryWherePart(array $criteria, $model)
     {
         $whereParts = array();
-        $object = $this->annotationReader->getSalesforceObject($model);
-        $fields = $this->annotationReader->getSalesforceFields($model);
+        $object = $this->attributeReader->getSalesforceObject($model);
+        $fields = $this->attributeReader->getSalesforceFields($model);
         $objectDescription = $this->doGetObjectDescription($object->name);
 
         foreach ($criteria as $key => $value) {
@@ -555,7 +556,7 @@ class Mapper
             }
 
             $name = $keyParts[0];
-            $field = $this->annotationReader->getSalesforceField($model, $name);
+            $field = $this->attributeReader->getSalesforceField($model, $name);
             if (!$field) {
                 throw new \InvalidArgumentException('Invalid field ' . $name);
             }
@@ -587,14 +588,14 @@ class Mapper
     /**
      * Get quoted where value
      *
-     * @param Annotation\Field $field
+     * @param Field $field
      * @param mixed $value
-     * @param DescribeSObjectResult $description
+     * @param Result\DescribeSObjectResult $description
      * @return string
      * @throws \InvalidArgumentException
      * @link http://www.salesforce.com/us/developer/docs/api/Content/field_types.htm#topic-title
      */
-    private function getQuotedWhereValue(Annotation\Field $field, $value,
+    private function getQuotedWhereValue(Field $field, $value,
         Result\DescribeSObjectResult $description)
     {
         $fieldDescription = $description->getField($field->name);
@@ -645,7 +646,7 @@ class Mapper
     {
         $orderParts = array();
         foreach ($orderBy as $field => $direction) {
-            $fieldAnnotation = $this->annotationReader->getSalesforceField($model, $field);
+            $fieldAnnotation = $this->attributeReader->getSalesforceField($model, $field);
             $orderParts[] = $fieldAnnotation->name . ' ' . $direction;
         }
 
@@ -667,14 +668,14 @@ class Mapper
     {
         $fields = array();
 
-        foreach ($this->annotationReader->getSalesforceFields($modelClass) as $field) {
+        foreach ($this->attributeReader->getSalesforceFields($modelClass) as $field) {
             $fields[] = $field->name;
         }
 
         $description = $this->getObjectDescription($modelClass);
 
         if ($includeRelatedLevels > 0) {
-            foreach($this->annotationReader->getSalesforceRelations($modelClass) as $relation) {
+            foreach($this->attributeReader->getSalesforceRelations($modelClass) as $relation) {
 
                 // Only process one-to-one and many-to-one relations here;
                 // one-to-many relations must be looked up as subquery.
@@ -715,8 +716,8 @@ class Mapper
      */
     public function getOneToManySubqueries($model, $includeRelatedLevels)
     {
-        $relations = $this->annotationReader->getSalesforceRelations($model);
-        $object = $this->annotationReader->getSalesforceObject($model);
+        $relations = $this->attributeReader->getSalesforceRelations($model);
+        $object = $this->attributeReader->getSalesforceObject($model);
         $subqueries = array();
 
         if ($includeRelatedLevels > 0) {
@@ -751,7 +752,7 @@ class Mapper
      */
     public function createQueryBuilder()
     {
-        return new Builder($this, $this->client, $this->annotationReader);
+        return new Builder($this, $this->client, $this->attributeReader);
     }
 
     /*

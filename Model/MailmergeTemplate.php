@@ -2,7 +2,9 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 
 /**
@@ -10,56 +12,32 @@ use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\AnnotationObject(name="MailmergeTemplate")
  */
+#[SalesforceObject(name: "MailmergeTemplate")]
 class MailmergeTemplate extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Body")
-     */
+    #[Field(name: "Body")]
     protected $body;
 
-    /**
-     * @var int
-     * @Salesforce\Field(name="BodyLength")
-     */
+    #[Field(name: "BodyLength")]
     protected $bodyLength;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Category")
-     */
+    #[Field(name: "Category")]
     protected $category;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Filename")
-     */
+    #[Field(name: "Filename")]
     protected $filename;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="LastUsedDate")
-     */
+    #[Field(name: "LastUsedDate")]
     protected $lastUsedDate;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
     public function getBodyLength()

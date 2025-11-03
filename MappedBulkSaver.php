@@ -4,7 +4,7 @@ namespace Ddeboer\Salesforce\MapperBundle;
 
 use Phpforce\SoapClient\Result\SaveResult;
 use Phpforce\SoapClient\BulkSaverInterface;
-use Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader;
+use Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader;
 
 /**
  * Provides bulk creates, deletes, updates and upserts for mapped (annotated)
@@ -25,16 +25,16 @@ class MappedBulkSaver implements MappedBulkSaverInterface
     private $mapper;
 
     /**
-     * @var AnnotationReader
+     * @var AttributeReader
      */
-    private $annotationReader;
+    private $attributeReader;
 
     public function __construct(BulkSaverInterface $bulkSaver, Mapper $mapper,
-        AnnotationReader $annotationReader)
+        AttributeReader $attributeReader)
     {
         $this->bulkSaver = $bulkSaver;
         $this->mapper = $mapper;
-        $this->annotationReader = $annotationReader;
+        $this->attributeReader = $attributeReader;
     }
 
     /**
@@ -43,11 +43,11 @@ class MappedBulkSaver implements MappedBulkSaverInterface
     public function save($model, $matchField = null)
     {
         $record = $this->mapper->mapToSalesforceObject($model, null !== $matchField);        
-        $objectMapping = $this->annotationReader->getSalesforceObject($model);
+        $objectMapping = $this->attributeReader->getSalesforceObject($model);
 
         $matchFieldName = null;
         if ($matchField) {
-            $field = $this->annotationReader->getSalesforceField($model, $matchField);
+            $field = $this->attributeReader->getSalesforceField($model, $matchField);
             if (!$field) {
                 throw new \InvalidArgumentException(sprintf(
                     'Invalid match field %s. Make sure to specify a mapped '

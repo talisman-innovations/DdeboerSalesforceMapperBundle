@@ -2,26 +2,27 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Query;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader;
+use Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader;
 use Ddeboer\Salesforce\MapperBundle\Query;
 
 class Builder
 {
     private $mapper;
     private $client;
-    private $annotationReader;
+    private $attributeReader;
     private $selectFields = array();
     private $groupBy = array();
     private $parameters = array();
     private $from = array();
     private $where = array();
     private $limit;
+    private mixed $having;
 
-    public function __construct($mapper, $client, AnnotationReader $annotationReader)
+    public function __construct($mapper, $client, AttributeReader $attributeReader)
     {
         $this->mapper = $mapper;
         $this->client = $client;
-        $this->annotationReader = $annotationReader;
+        $this->attributeReader = $attributeReader;
     }
 
     public function select($select)
@@ -84,7 +85,7 @@ class Builder
         if (count($fields) > 0) {
             $mappedFields = array();
             foreach ($fields as $field) {
-                $mappedFields[] = $this->annotationReader->getSalesforceField(
+                $mappedFields[] = $this->attributeReader->getSalesforceField(
                     $this->from[0], $field
                 )->name;
             }
@@ -95,7 +96,7 @@ class Builder
 
     private function getFromObject()
     {
-        return $this->annotationReader->getSalesforceObject($this->from[0])->name;
+        return $this->attributeReader->getSalesforceObject($this->from[0])->name;
     }
 
     private function getWhereString()
@@ -110,7 +111,7 @@ class Builder
                        $matches);
             
             list($all, $connector, $field, $operator, $value) = $matches;
-            $salesforceFieldName = $this->annotationReader
+            $salesforceFieldName = $this->attributeReader
                 ->getSalesforceField($this->from[0], $field)->name;
             $whereString .= $connector . $salesforceFieldName . $operator
                          . $this->quoteValue($value) . ' ';

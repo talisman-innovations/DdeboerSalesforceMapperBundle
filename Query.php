@@ -9,7 +9,8 @@ class Query
     private $mapper;
     private $query;
     private $client;
-    
+    private $drivingModel;
+
     public function __construct($mapper, $client, $query, $drivingModel = null)
     {
         $this->mapper = $mapper;

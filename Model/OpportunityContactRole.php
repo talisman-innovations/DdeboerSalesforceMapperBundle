@@ -2,57 +2,44 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Opportunity contact role
  *
- * @Salesforce\AnnotationObject(name="OpportunityContactRole")
  */
+#[SalesforceObject(name: "OpportunityContactRole")]
 class OpportunityContactRole extends AbstractModel
 {
-    /**
-     * @var Contact
-     * @Salesforce\Relation(field="ContactId", name="Contact",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Contact")
-     */
+    #[Relation(
+        class: Contact::class,
+        field: "ContactId",
+        name: "Contact"
+    )]
     protected $contact;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ContactId")
-     */
+    #[Field(name: "ContactId")]
     protected $contactId;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsPrimary")
-     */
+    #[Field(name: "IsPrimary")]
     protected $isPrimary;
   
-    /**
-     * @var Opportunity
-     * @Salesforce\Relation(field="OpportunityId", name="Opportunity",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Opportunity")
-     */
+    #[Relation(
+        class: Opportunity::class,
+        field: "OpportunityId",
+        name: "Opportunity"
+    )]
     protected $opportunity;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="OpportunityId")
-     */
+    #[Field(name: "OpportunityId")]
     protected $opportunityId;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Role")
-     */
+    #[Field(name: "Role")]
     protected $role;
     
     public function getContact()

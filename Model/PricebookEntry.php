@@ -2,40 +2,33 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Represents a product entry (an association between a Pricebook2 and Product2)
  * in a price book
  *
- * @Salesforce\AnnotationObject(name="PricebookEntry")
  * @link http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_objects_pricebookentry.htm
  */
+#[SalesforceObject(name: "PricebookEntry")]
 class PricebookEntry extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsActive")
-     */
+    #[Field(name: "IsActive")]
     protected $isActive;
 
-    /**
-     * @var Product
-     * @Salesforce\Relation(field="Product2Id", name="Product2",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Product")
-     */
+    #[Relation(
+        class: Product::class,
+        field: "Product2Id",
+        name: "Product2"
+    )]
     protected $product;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Product2Id")
-     */
+    #[Field(name: "Product2Id")]
     protected $productId;
 
     protected $pricebook;

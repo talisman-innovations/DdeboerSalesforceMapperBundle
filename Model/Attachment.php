@@ -2,19 +2,18 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * An attachment in Salesforce
  * 
- * @Salesforce\AnnotationObject(name="Attachment")
  */
+#[SalesforceObject(name: "Attachment")]
 class Attachment extends AbstractModel
 {   
-    /**
-     * @var string
-     * @Salesforce\Field(name="Body")  
-     */
+    #[Field(name: "Body")]
     protected $body;
     
     /**
@@ -22,22 +21,13 @@ class Attachment extends AbstractModel
      */
     protected $bodyLength;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ContentType")
-     */
+    #[Field(name: "ContentType")]
     protected $contentType;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
     
     /**
@@ -45,36 +35,27 @@ class Attachment extends AbstractModel
      */
     protected $isProtected;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
     
-    /**
-     * @var Name
-     * @Salesforce\Relation(field="OwnerId", name="Owner",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Name")
-     */
+    #[Relation(
+        class: Name::class,
+        field: "OwnerId",
+        name: "Owner"
+    )]
     protected $owner;
     
-    /**
-     * @var tnsID
-     * @Salesforce\Field(name="OwnerId")
-     */
+    #[Field(name: "OwnerId")]
     protected $ownerId;
     
-    /**
-     * @var Name
-     * @Salesforce\Relation(field="ParentId", name="Parent",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Name")
-     */
+    #[Relation(
+        class: Name::class,
+        field: "ParentId",
+        name: "Parent"
+    )]
     protected $parent;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ParentId")
-     */
+    #[Field(name: "ParentId")]
     protected $parentId;
 
     public function getBody()

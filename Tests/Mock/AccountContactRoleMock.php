@@ -2,29 +2,27 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Tests\Mock;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
-/**
- * @Salesforce\AnnotationObject(name="AccountContactRole")
- */
+#[SalesforceObject(name: "AccountContactRole")]
 class AccountContactRoleMock
 {
-    /**
-     * @Salesforce\Field(name="Id")
-     */
+    #[Field(name: "Id")]
     protected $id;
 
-    /**
-     * @Salesforce\Relation(field="AccountId", name="Account",
-     *   class="Ddeboer\Salesforce\MapperBundle\Tests\Mock\AccountMock"
-     * )
-     */
+    #[Relation(
+        field: "AccountId",
+        name: "Account",
+        class: AccountMock::class
+    )]
     protected $account;
 
-    /**
-     * @Salesforce\Relation(field="ContactId", name="Contact",
-     *   class="Ddeboer\Salesforce\MapperBundle\Tests\Mock\ContactMock"
-     * )
-     */
+    #[Relation(
+        field: "ContactId",
+        name: "Contact",
+        class: ContactMock::class
+    )]
     protected $contact;
 }

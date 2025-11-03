@@ -2,23 +2,16 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Tests\Mock;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
 
-/**
- * @Salesforce\AnnotationObject(name="Task")
- */
+#[SalesforceObject(name: "Task")]
 class TaskMock
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Id")
-     */
+    #[Field(name: "Id")]
     protected $id;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Subject")
-     */
+    #[Field(name: "Subject")]
     protected $subject;
 
     public function getId()

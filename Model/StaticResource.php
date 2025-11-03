@@ -2,7 +2,9 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 
 /**
@@ -10,50 +12,29 @@ use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\AnnotationObject(name="StaticResource")
  */
+#[SalesforceObject(name: "StaticResource")]
 class StaticResource extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Body")
-     */
+    #[Field(name: "Body")]
     protected $body;
 
-    /**
-     * @var int
-     * @Salesforce\Field(name="BodyLength")
-     */
+    #[Field(name: "BodyLength")]
     protected $bodyLength;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="CacheControl")
-     */
+    #[Field(name: "CacheControl")]
     protected $cacheControl;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="ContentType")
-     */
+    #[Field(name: "ContentType")]
     protected $contentType;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="NamespacePrefix")
-     */
+    #[Field(name: "NamespacePrefix")]
     protected $namespacePrefix;
 
     public function getContentType()

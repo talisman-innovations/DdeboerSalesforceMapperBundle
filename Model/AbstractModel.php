@@ -2,7 +2,7 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
 
 /**
  * Layer supertype for Salesforce objects
@@ -13,45 +13,43 @@ abstract class AbstractModel
 {
     /**
      * Object ID
-     *
-     * @var string
-     * @Salesforce\Field(name="Id")
      */
-    protected $id;
+    #[Field(name: "Id")]
+    protected ?string $id = null;
 
     /**
-     * @var User
+     * Created by user
      */
-    protected $createdBy;
+    protected ?User $createdBy = null;
 
     /**
-     * @var string
+     * Created by user ID
      */
-    protected $createdById;
+    protected ?string $createdById = null;
 
     /**
-     * @var \DateTime
-     * @Salesforce\Field(name="CreatedDate")
+     * Created date
      */
-    protected $createdDate;
+    #[Field(name: "CreatedDate")]
+    protected ?\DateTime $createdDate = null;
 
     /**
-     * @var strng
-     * @Salesforce\Field(name="LastModifiedById")
+     * Last modified by user ID
      */
-    protected $lastModifiedById;
+    #[Field(name: "LastModifiedById")]
+    protected ?string $lastModifiedById = null;
 
     /**
-     * @var \DateTime
-     * @Salesforce\Field(name="LastModifiedDate")
+     * Last modified date
      */
-    protected $lastModifiedDate;
-    
+    #[Field(name: "LastModifiedDate")]
+    protected ?\DateTime $lastModifiedDate = null;
+
     /**
-     * @var \DateTime
-     * @Salesforce\Field(name="SystemModstamp")
+     * System modification timestamp
      */
-    protected $systemModstamp;
+    #[Field(name: "SystemModstamp")]
+    protected ?\DateTime $systemModstamp = null;
 
     /**
      * @return string

@@ -2,37 +2,27 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce standard record type object
  *
- * @Salesforce\AnnotationObject(name="RecordType")
  */
+#[SalesforceObject(name: "RecordType")]
 class RecordType extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="DeveloperName")
-     */
+    #[Field(name: "DeveloperName")]
     protected $developerName;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsActive")
-     */
+    #[Field(name: "IsActive")]
     protected $isActive;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="SobjectType")
-     */
+    #[Field(name: "SobjectType")]
     protected $sObjectType;
 
     public function getDeveloperName()

@@ -2,32 +2,28 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce standard task object
  *
- * @Salesforce\AnnotationObject(name="Task")
  */
+#[SalesforceObject(name: "Task")]
 class Task extends AbstractModel
 {
-    /**
-     * @var Account
-     * @Salesforce\Relation(field="AccountId", name="Account",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Account")
-     */
+    #[Relation(
+        class: Account::class,
+        field: "AccountId",
+        name: "Account"
+    )]
     protected $account;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="AccountId")
-     */
+    #[Field(name: "AccountId")]
     protected $accountId;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="ActivityDate")
-     */
+    #[Field(name: "ActivityDate")]
     protected $activityDate;
 
     /**
@@ -55,10 +51,7 @@ class Task extends AbstractModel
      */
     protected $callType;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
 
     /**
@@ -71,53 +64,32 @@ class Task extends AbstractModel
      */
     protected $feeds;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsArchived")
-     */
+    #[Field(name: "IsArchived")]
     protected $isArchived;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsClosed")
-     */
+    #[Field(name: "IsClosed")]
     protected $isClosed;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsRecurrence")
-     */
+    #[Field(name: "IsRecurrence")]
     protected $isRecurrence;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsReminderSet")
-     */
+    #[Field(name: "IsReminderSet")]
     protected $isReminderSet;
 
-    /**
-     * @var Name
-     * @Salesforce\Relation(field="OwnerId", name="Owner",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Name")
-     */
+    #[Relation(
+        class: Name::class,
+        field: "OwnerId",
+        name: "Owner"
+    )]
     protected $owner;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="OwnerId")
-     */
+    #[Field(name: "OwnerId")]
     protected $ownerId;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Priority")
-     */
+    #[Field(name: "Priority")]
     protected $priority;
 
     /**
@@ -175,22 +147,13 @@ class Task extends AbstractModel
      */
     protected $recurringTasks;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="ReminderDateTime")
-     */
+    #[Field(name: "ReminderDateTime")]
     protected $reminderDateTime;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Status")
-     */
+    #[Field(name: "Status")]
     protected $status;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Subject")
-     */
+    #[Field(name: "Subject")]
     protected $subject;
 
     /**
@@ -198,30 +161,24 @@ class Task extends AbstractModel
      */
     protected $tags;
 
-    /**
-     * @var Name
-     * @Salesforce\Relation(field="WhatId", name="What",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Name")
-     */
+    #[Relation(
+        class: Name::class,
+        field: "WhatId",
+        name: "What"
+    )]
     protected $what;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="WhatId")
-     */
+    #[Field(name: "WhatId")]
     protected $whatId;
 
-    /**
-     * @var Name
-     * @Salesforce\Relation(field="WhoId", name="Who",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Name")
-     */
+    #[Relation(
+        class: Name::class,
+        field: "WhoId",
+        name: "Who"
+    )]
     protected $who;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="WhoId")
-     */
+    #[Field(name: "WhoId")]
     protected $whoId;
 
     public function getAccount()

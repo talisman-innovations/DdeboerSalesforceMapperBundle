@@ -2,120 +2,74 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce standard lead object
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\AnnotationObject(name="Lead")
  */
+#[SalesforceObject(name: "Lead")]
 class Lead extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Company")
-     */
+    #[Field(name: "Company")]
     protected $company;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="PostalCode")
-     */
+    #[Field(name: "PostalCode")]
     protected $postalCode;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="City")
-     */
+    #[Field(name: "City")]
     protected $city;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Street")
-     */
+    #[Field(name: "Street")]
     protected $street;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="LeadSource")
-     */
+    #[Field(name: "LeadSource")]
     protected $leadSource;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="FirstName")
-     */
+    #[Field(name: "FirstName")]
     protected $firstName;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="LastName")
-     */
+    #[Field(name: "LastName")]
     protected $lastName;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Salutation")
-     */
+    #[Field(name: "Salutation")]
     protected $salutation;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Email")
-     */
+    #[Field(name: "Email")]
     protected $email;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Phone")
-     */
+    #[Field(name: "Phone")]
     protected $phone;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Status")
-     */
+    #[Field(name: "Status")]
     protected $status;
 
     /**
-     * @Salesforce\Field(name="OwnerId")
+     #[Field(name: "OwnerId")]
      */
     protected $ownerId;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsConverted")
-     */
+    #[Field(name: "IsConverted")]
     protected $isConverted;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="ConvertedAccountId")
-     */
+    #[Field(name: "ConvertedAccountId")]
     protected $convertedAccountId;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="ConvertedContactId")
-     */
+    #[Field(name: "ConvertedContactId")]
     protected $convertedContactId;
 
     /**
-     * @Salesforce\Field(name="Fax")
+     #[Field(name: "Fax")]
      */
     protected $fax;
 

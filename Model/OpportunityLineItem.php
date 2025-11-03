@@ -2,19 +2,18 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * OpportunityLineItem proxy object
  * 
- * @Salesforce\AnnotationObject(name="OpportunityLineItem")
  */
+#[SalesforceObject(name: "OpportunityLineItem")]
 class OpportunityLineItem extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
     
     /**
@@ -22,42 +21,30 @@ class OpportunityLineItem extends AbstractModel
      */
     protected $isDeleted;
     
-    /**
-     * @var double
-     * @Salesforce\Field(name="ListPrice")
-     */
+    #[Field(name: "ListPrice")]
     protected $listPrice;
     
-    /**
-     * @var Opportunity
-     * @Salesforce\Relation(field="OpportunityId", name="Opportunity",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Opportunity")
-     */
+    #[Relation(
+        class: Opportunity::class,
+        field: "OpportunityId",
+        name: "Opportunity"
+    )]
     protected $opportunity;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="OpportunityId")
-     */
+    #[Field(name: "OpportunityId")]
     protected $opportunityId;
     
-    /**
-     * @var PricebookEntry
-     * @Salesforce\Relation(field="PricebookEntryId", name="PricebookEntry",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\PricebookEntry")
-     */
+    #[Relation(
+        class: PricebookEntry::class,
+        field: "PricebookEntryId",
+        name: "PricebookEntry"
+    )]
     protected $pricebookEntry;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="PricebookEntryId")
-     */
+    #[Field(name: "PricebookEntryId")]
     protected $pricebookEntryId;
     
-    /**
-     * @var double
-     * @Salesforce\Field(name="Quantity")
-     */
+    #[Field(name: "Quantity")]
     protected $quantity;
     
     /**
@@ -70,16 +57,10 @@ class OpportunityLineItem extends AbstractModel
      */
     protected $sortOrder;
     
-    /**
-     * @var double
-     * @Salesforce\Field(name="TotalPrice")
-     */
+    #[Field(name: "TotalPrice")]
     protected $totalPrice;
     
-    /**
-     * @var double
-     * @Salesforce\Field(name="UnitPrice")
-     */
+    #[Field(name: "UnitPrice")]
     protected $unitPrice;
 
     public function getDescription()

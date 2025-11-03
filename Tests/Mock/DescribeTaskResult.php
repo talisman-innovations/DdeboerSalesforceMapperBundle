@@ -7,6 +7,8 @@ use Phpforce\SoapClient\Result\DescribeSObjectResult\Field;
 
 class DescribeTaskResult extends DescribeSObjectResult
 {
+    private array $fields;
+
     public function __construct()
     {
         $this->fields[] = new FieldId();

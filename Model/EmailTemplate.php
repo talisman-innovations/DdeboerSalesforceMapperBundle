@@ -2,7 +2,9 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 
 /**
@@ -10,38 +12,23 @@ use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\AnnotationObject(name="EmailTemplate")
  */
+#[SalesforceObject(name: "EmailTemplate")]
 class EmailTemplate extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Body")
-     */
+    #[Field(name: "Body")]
     protected $body;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="DeveloperName")
-     */
+    #[Field(name: "DeveloperName")]
     protected $developerName;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="HtmlValue")
-     */
+    #[Field(name: "HtmlValue")]
     protected $htmlValue;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Subject")
-     */
+    #[Field(name: "Subject")]
     protected $subject;
 
     public function getBody()

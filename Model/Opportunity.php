@@ -2,289 +2,147 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Default opportunity model
  *
  * You can extend this class to incorporate custom fields on the Salesforce
  * opportunity object.
- *
- * @Salesforce\AnnotationObject(name="Opportunity")
  */
+#[SalesforceObject(name: "Opportunity")]
 class Opportunity extends AbstractModel
 {
-    /**
-     * @var Account
-     * @Salesforce\Relation(field="AccountId", name="Account",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Account")
-     */
-    protected $account;
+    #[Relation(
+        field: "AccountId",
+        name: "Account",
+        class: Account::class
+    )]
+    protected ?Account $account = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="AccountId")
-     */
-    protected $accountId;
+    #[Field(name: "AccountId")]
+    protected ?string $accountId = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $accountPartners;
+    protected mixed $accountPartners = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $activityHistories;
+    protected mixed $activityHistories = null;
 
-    /**
-     * @var float
-     * @Salesforce\Field(name="Amount")
-     */
-    protected $amount;
+    #[Field(name: "Amount")]
+    protected ?float $amount = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $attachments;
+    protected mixed $attachments = null;
 
-    /**
-     * @var ensCampaign
-     */
-    protected $campaign;
+    protected mixed $campaign = null;
 
-    /**
-     * @Salesforce\Field(name="CampaignId")
-     */
-    protected $campaignId;
+    #[Field(name: "CampaignId")]
+    protected ?string $campaignId = null;
 
-    /**
-     * @var xsddate
-     * @Salesforce\Field(name="CloseDate")
-     */
-    protected $closeDate;
+    #[Field(name: "CloseDate")]
+    protected mixed $closeDate = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
-    protected $description;
+    #[Field(name: "Description")]
+    protected ?string $description = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $events;
+    protected mixed $events = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $feedSubscriptionsForEntity;
+    protected mixed $feedSubscriptionsForEntity = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $feeds;
+    protected mixed $feeds = null;
 
-    /**
-     * @var string
-     */
-    protected $fiscal;
+    protected ?string $fiscal = null;
 
-    /**
-     * @var xsdint
-     */
-    protected $fiscalQuarter;
+    protected ?int $fiscalQuarter = null;
 
-    /**
-     * @var int
-     * @Salesforce\Field(name="FiscalYear")
-     */
-    protected $fiscalYear;
+    #[Field(name: "FiscalYear")]
+    protected ?int $fiscalYear = null;
 
-    /**
-     * @var string
-     */
-    protected $forecastCategory;
+    protected ?string $forecastCategory = null;
 
-    /**
-     * @var string
-     */
-    protected $forecastCategoryName;
+    protected ?string $forecastCategoryName = null;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="HasOpportunityLineItem")
-     */
-    protected $hasOpportunityLineItem;
+    #[Field(name: "HasOpportunityLineItem")]
+    protected ?bool $hasOpportunityLineItem = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $histories;
+    protected mixed $histories = null;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsClosed")
-     */
-    protected $isClosed;
+    #[Field(name: "IsClosed")]
+    protected ?bool $isClosed = null;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
-    protected $isDeleted;
+    #[Field(name: "IsDeleted")]
+    protected ?bool $isDeleted = null;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsWon")
-     */
-    protected $isWon;
+    #[Field(name: "IsWon")]
+    protected ?bool $isWon = null;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="LastActivityDate")
-     */
-    protected $lastActivityDate;
+    #[Field(name: "LastActivityDate")]
+    protected ?\DateTime $lastActivityDate = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="LeadSource")
-     */
-    protected $leadSource;
+    #[Field(name: "LeadSource")]
+    protected ?string $leadSource = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
-    protected $name;
+    #[Field(name: "Name")]
+    protected ?string $name = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="NextStep")
-     */
-    protected $nextStep;
+    #[Field(name: "NextStep")]
+    protected ?string $nextStep = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $notes;
+    protected mixed $notes = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $notesAndAttachments;
+    protected mixed $notesAndAttachments = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $openActivities;
+    protected mixed $openActivities = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $opportunityCompetitors;
+    protected mixed $opportunityCompetitors = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $opportunityContactRoles;
+    protected mixed $opportunityContactRoles = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $opportunityHistories;
+    protected mixed $opportunityHistories = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $opportunityLineItems;
+    protected mixed $opportunityLineItems = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $opportunityPartnersFrom;
+    protected mixed $opportunityPartnersFrom = null;
 
-    /**
-     * @var User
-     * @Salesforce\Relation(field="OwnerId", name="Owner",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\User")
-     */
-    protected $owner;
+    #[Relation(
+        field: "OwnerId",
+        name: "Owner",
+        class: User::class
+    )]
+    protected ?User $owner = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="OwnerId")
-     */
-    protected $ownerId;
+    #[Field(name: "OwnerId")]
+    protected ?string $ownerId = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $partners;
+    protected mixed $partners = null;
 
-    /**
-     * @var ensPricebook2
-     */
-    protected $pricebook2;
+    protected mixed $pricebook2 = null;
 
-    /**
-     * @var tnsID
-     */
-    protected $pricebook2Id;
+    protected mixed $pricebook2Id = null;
 
-    /**
-     * @var float
-     * @Salesforce\Field(name="Probability")
-     */
-    protected $probability;
+    #[Field(name: "Probability")]
+    protected ?float $probability = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $processInstances;
+    protected mixed $processInstances = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $processSteps;
+    protected mixed $processSteps = null;
 
-    /**
-     * @var ensRecordType
-     */
-    protected $recordType;
+    protected mixed $recordType = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="RecordTypeId")
-     */
-    protected $recordTypeId;
+    #[Field(name: "RecordTypeId")]
+    protected ?string $recordTypeId = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $shares;
+    protected mixed $shares = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="StageName")
-     */
-    protected $stageName;
+    #[Field(name: "StageName")]
+    protected ?string $stageName = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $tags;
+    protected mixed $tags = null;
 
-    /**
-     * @var tnsQueryResult
-     */
-    protected $tasks;
+    protected mixed $tasks = null;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Type")
-     */
-    protected $type;
+    #[Field(name: "Type")]
+    protected ?string $type = null;
 
     /**
      *

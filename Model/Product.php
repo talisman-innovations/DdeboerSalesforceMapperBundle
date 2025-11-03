@@ -2,39 +2,32 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce standard task object
  *
- * @Salesforce\AnnotationObject(name="Product2")
  */
+#[SalesforceObject(name: "Product")]
 class Product extends AbstractModel
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
     
     /**
      * Product family 
      * 
      * @var string
-     * @Salesforce\Field(name="Family")
+     #[Field(name: "Family")]
      */
     protected $family;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsActive")
-     */
+    #[Field(name: "IsActive")]
     protected $isActive;
 
     public function getName()

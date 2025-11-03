@@ -2,7 +2,9 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Default name model
@@ -10,87 +12,52 @@ use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
  * You can extend this class to incorporate custom fields on the Salesforce
  * name object.
  * 
- * @Salesforce\AnnotationObject(name="Name")
  */
+#[SalesforceObject(name: "Name")]
 class Name 
 {
-    /**
-     * @var string
-     * @Salesforce\Field(name="Id")
-     */
+    #[Field(name: "Id")]
     protected $id;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Alias")
-     */
+    #[Field(name: "Alias")]
     protected $alias;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Email")
-     */
+    #[Field(name: "Email")]
     protected $email;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="FirstName")
-     */
+    #[Field(name: "FirstName")]
     protected $firstName;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsActive")
-     */
+    #[Field(name: "IsActive")]
     protected $isActive;        
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="LastName")
-     */
+    #[Field(name: "LastName")]
     protected $lastName;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Phone")
-     */
+    #[Field(name: "Phone")]
     protected $phone;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="ProfileId")
-     */
+    #[Field(name: "ProfileId")]
     protected $profileId;
 
     protected $profile;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Title")
-     */
+    #[Field(name: "Title")]
     protected $title;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Type")
-     */
+    #[Field(name: "Type")]
     protected $type;
 
     protected $userRole;
 
     protected $userRoleId;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Username")
-     */
+    #[Field(name: "Username")]
     protected $username;
+    protected $FirstName;
 
     public function getId()
     {

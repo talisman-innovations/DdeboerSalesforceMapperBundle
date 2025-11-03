@@ -4,7 +4,7 @@ namespace Ddeboer\Salesforce\MapperBundle\Tests;
 
 use Ddeboer\Salesforce\MapperBundle\Mapper;
 use Ddeboer\Salesforce\MapperBundle\Model;
-use Ddeboer\Salesforce\MapperBundle\Annotation;
+use Ddeboer\Salesforce\MapperBundle\Attribute;
 use Doctrine\Common\Collections\ArrayCollection;
 use Phpforce\SoapClient\Result\RecordIterator;
 use Phpforce\SoapClient\Result\QueryResult;
@@ -66,37 +66,37 @@ class MapperTest extends \PHPUnit_Framework_TestCase
             ->with("select Id,Subject,OwnerId from Task  where Id = '00TM0000003YlJ6' LIMIT 1")
             ->will($this->returnValue(new RecordIterator($client, $queryResult)));
 
-        $annotationReader = $this->getMockBuilder(
-            'Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader'
+        $attributeReader = $this->getMockBuilder(
+            'Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader'
             )
             ->disableOriginalConstructor()
             ->getMock();
 
-        $annotationReader
+        $attributeReader
             ->expects($this->exactly(3))
             ->method('getSalesforceFields')
             ->with(new Model\Task())
             ->will($this->returnValue(new ArrayCollection(array(
-                new Annotation\Field(array('name' => 'Id')),
-                new Annotation\Field(array('name' => 'Subject')),
-                new Annotation\Field(array('name' => 'OwnerId'))
+                new Attribute\Field(name: 'Id'),
+                new Attribute\Field(name: 'Subject'),
+                new Attribute\Field(name: 'OwnerId')
             ))));
 
-        $annotationReader
+        $attributeReader
             ->expects($this->once())
             ->method('getSalesforceRelations')
             ->with(new Model\Task())
             ->will($this->returnValue(array()));
 
-        $annotationReader
+        $attributeReader
             ->expects($this->any())
             ->method('getSalesforceObject')
             ->with(new Model\Task())
             ->will($this->returnValue(
-                new Annotation\AnnotationObject(array('name' => 'Task'))
+                new Attribute\SalesforceObject(name: 'Task')
             ));
 
-        $mapper = new Mapper($client, $annotationReader);
+        $mapper = new Mapper($client, $attributeReader);
         $task = $mapper->find(new Model\Task(), '00TM0000003YlJ6');
         var_dump($task);
     }
@@ -235,13 +235,12 @@ class MapperTest extends \PHPUnit_Framework_TestCase
      */
     protected function getMapper($client)
     {
-        $annotationReader = new \Doctrine\Common\Annotations\AnnotationReader();
-        $salesforceAnnotationReader = new Annotation\AnnotationReader($annotationReader);
+        $salesforceAttributeReader = new Attribute\AttributeReader();
         $cache = $this->getMockBuilder('Ddeboer\Salesforce\MapperBundle\Cache\FileCache')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mapper = new Mapper($client, $salesforceAnnotationReader, $cache);
+        $mapper = new Mapper($client, $salesforceAttributeReader, $cache);
         return $mapper;
     }
 }

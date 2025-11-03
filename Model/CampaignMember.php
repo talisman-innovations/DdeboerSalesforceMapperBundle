@@ -1,53 +1,55 @@
 <?php
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * A campaign member
  *
- * @Salesforce\AnnotationObject(name="CampaignMember")
  */
+#[SalesforceObject(name: "CampaignMember")]
 class CampaignMember extends AbstractModel
 {
-    /**
-     * @var Campaign
-     * @Salesforce\Relation(field="CampaignId", name="Campaign",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Campaign")
-     */
+    #[Relation(
+        class: Campaign::class,
+        field: "CampaignId",
+        name: "Campaign"
+    )]
     protected $campaign;
 
     /**
-     * @Salesforce\Field(name="CampaignId")
+     #[Field(name: "CampaignId")]
      */
     protected $campaignId;
 
-    /**
-     * @var Contact
-     * @Salesforce\Relation(field="ContactId", name="Contact",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Contact")
-     */
+    #[Relation(
+        class: Contact::class,
+        field: "ContactId",
+        name: "Contact"
+    )]
     protected $contact;
 
     /**
-     * @Salesforce\Field(name="ContactId")
+     #[Field(name: "ContactId")]
      */
     protected $contactId;
 
-    /**
-     * @var Lead
-     * @Salesforce\Relation(field="LeadId", name="Lead",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Lead")
-     */
+    #[Relation(
+        class: Lead::class,
+        field: "LeadId",
+        name: "Lead"
+    )]
     protected $lead;
 
     /**
-     * @Salesforce\Field(name="LeadId")
+     #[Field(name: "LeadId")]
      */
     protected $leadId;
 
     /**
-     * @Salesforce\Field(name="Status")
+     #[Field(name: "Status")]
      */
     protected $status;
 

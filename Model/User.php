@@ -2,19 +2,18 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce user object
  *
- * @Salesforce\AnnotationObject(name="User")
  */
+#[SalesforceObject(name: "User")]
 class User extends AbstractModel
 {
-    /**
-     * @var stirng
-     * @Salesforce\Field(name="AboutMe")
-     */
+    #[Field(name: "AboutMe")]
     protected $aboutMe;
 
     /**
@@ -29,22 +28,13 @@ class User extends AbstractModel
      */
     protected $callCenterId;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="City")
-     */
+    #[Field(name: "City")]
     protected $city;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="CommunityNickName")
-     */
+    #[Field(name: "CommunityNickName")]
     protected $communityNickname;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="CompanyName")
-     */
+    #[Field(name: "CompanyName")]
     protected $companyName;
 
     /**
@@ -62,10 +52,7 @@ class User extends AbstractModel
      */
     protected $contractsSigned;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Country")
-     */
+    #[Field(name: "Country")]
     protected $country;
 
     /**
@@ -83,10 +70,7 @@ class User extends AbstractModel
      */
     protected $delegatedUsers;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Department")
-     */
+    #[Field(name: "Department")]
     protected $department;
 
     /**
@@ -99,10 +83,7 @@ class User extends AbstractModel
      */
     protected $division;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Email")
-     */
+    #[Field(name: "Email")]
     protected $email;
 
     /**
@@ -115,16 +96,10 @@ class User extends AbstractModel
      */
     protected $employeeNumber;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Extension")
-     */
+    #[Field(name: "Extension")]
     protected $extension;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Fax")
-     */
+    #[Field(name: "Fax")]
     protected $fax;
 
     /**
@@ -147,10 +122,7 @@ class User extends AbstractModel
      */
     protected $feeds;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="FirstName")
-     */
+    #[Field(name: "FirstName")]
     protected $firstName;
 
     /**
@@ -158,34 +130,19 @@ class User extends AbstractModel
      */
     protected $forecastEnabled;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="FullPhotoUrl")
-     */
+    #[Field(name: "FullPhotoUrl")]
     protected $fullPhotoUrl;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsActive")
-     */
+    #[Field(name: "IsActive")]
     protected $isActive;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="LastName")
-     */
+    #[Field(name: "LastName")]
     protected $lastName;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Phone")
-     */
+    #[Field(name: "Phone")]
     protected $phone;
 
     /**
@@ -193,16 +150,10 @@ class User extends AbstractModel
      */
     protected $languageLocaleKey;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="LastLoginDate")
-     */
+    #[Field(name: "LastLoginDate")]
     protected $lastLoginDate;
 
-    /**
-     * @var \DateTime
-     * @Salesforce\Field(name="LastPasswordChangeDate")
-     */
+    #[Field(name: "LastPasswordChangeDate")]
     protected $lastPasswordChangeDate;
 
     /**
@@ -220,10 +171,7 @@ class User extends AbstractModel
      */
     protected $managerId;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="MobilePhone")
-     */
+    #[Field(name: "MobilePhone")]
     protected $mobilePhone;
 
     /**
@@ -236,54 +184,30 @@ class User extends AbstractModel
      */
     protected $offlineTrialExpirationDate;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="PostalCode")
-     */
+    #[Field(name: "PostalCode")]
     protected $postalCode;
 
-     /**
-     * @var string
-     * @Salesforce\Field(name="ProfileId")
-     */
+     #[Field(name: "ProfileId")]
     protected $profileId;
 
     protected $profile;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Title")
-     */
+    #[Field(name: "Title")]
     protected $title;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="ReceivesAdminInfoEmails")
-     */
+    #[Field(name: "ReceivesAdminInfoEmails")]
     protected $receivesAdminInfoEmails;
 
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="ReceivesInfoEmails")
-     */
+    #[Field(name: "ReceivesInfoEmails")]
     protected $receivesInfoEmails;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="SmallPhotoUrl")
-     */
+    #[Field(name: "SmallPhotoUrl")]
     protected $smallPhotoUrl;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="State")
-     */
+    #[Field(name: "State")]
     protected $state;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Street")
-     */
+    #[Field(name: "Street")]
     protected $street;
 
     /**
@@ -291,10 +215,7 @@ class User extends AbstractModel
      */
     protected $timeZoneSidKey;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="Username")
-     */
+    #[Field(name: "Username")]
     protected $username;
 
     /**
@@ -362,10 +283,7 @@ class User extends AbstractModel
      */
     protected $userPreferencesTaskRemindersCheckboxDefault;
 
-    /**
-     * @var string
-     * @Salesforce\Field(name="UserType")
-     */
+    #[Field(name: "UserType")]
     protected $userType;
 
     public function getAboutMe()

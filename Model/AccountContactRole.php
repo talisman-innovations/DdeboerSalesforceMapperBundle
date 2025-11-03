@@ -2,59 +2,46 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * Salesforce standard account contact role object
  *
  * You can extend this class to incorporate custom fields on the object.
  *
- * @Salesforce\AnnotationObject(name="AccountContactRole")
  */
+#[SalesforceObject(name: "AccountContactRole")]
 class AccountContactRole extends AbstractModel
 {
-    /**
-     * @var Account
-     * @Salesforce\Relation(field="AccountId", name="Account",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Account")
-     */
+    #[Relation(
+        class: Account::class,
+        field: "AccountId",
+        name: "Account"
+    )]
     protected $account;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="AccountId")
-     */
+    #[Field(name: "AccountId")]
     protected $accountId;
     
-    /**
-     * @var Contact
-     * @Salesforce\Relation(field="ContactId", name="Contact",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\Contact")
-     */
+    #[Relation(
+        class: Contact::class,
+        field: "ContactId",
+        name: "Contact"
+    )]
     protected $contact;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ContactId")
-     */
+    #[Field(name: "ContactId")]
     protected $contactId;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsPrimary")
-     */
+    #[Field(name: "IsPrimary")]
     protected $isPrimary;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Role")
-     */
+    #[Field(name: "Role")]
     protected $role;
 
     /**

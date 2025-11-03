@@ -2,25 +2,18 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Tests\Mock;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
 
-/**
- * @Salesforce\AnnotationObject(name="Contact")
- */
+#[SalesforceObject(name: "Contact")]
 class ContactMock
 {
-    /**
-     * @Salesforce\Field(name="Id")
-     */
+    #[Field(name: "Id")]
     protected $id;
 
-    /**
-     * @Salesforce\Field(name="FirstName")
-     */
+    #[Field(name: "FirstName")]
     protected $firstName;
 
-    /**
-     * @Salesforce\Field(name="LastName")
-     */
+    #[Field(name: "LastName")]
     protected $lastName;
 }

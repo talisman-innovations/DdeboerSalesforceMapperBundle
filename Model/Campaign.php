@@ -1,52 +1,54 @@
 <?php
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 
 /**
  * A campaign
  *
- * @Salesforce\AnnotationObject(name="Campaign")
  */
+#[SalesforceObject(name: "Campaign")]
 class Campaign extends AbstractModel
 {
     /**
-     * @Salesforce\Field(name="Name")
+     #[Field(name: "Name")]
      */
     protected $name;
 
     /**
-     * @Salesforce\Field(name="StartDate")
+     #[Field(name: "StartDate")]
      */
     protected $startDate;
 
     /**
-     * @Salesforce\Field(name="EndDate")
+     #[Field(name: "EndDate")]
      */
     protected $endDate;
 
     /**
-     * @Salesforce\Field(name="Status")
+     #[Field(name: "Status")]
      */
     protected $status;
 
     /**
-     * @Salesforce\Field(name="IsActive")
+     #[Field(name: "IsActive")]
      */
     protected $isActive;
 
     /**
-     * @Salesforce\Field(name="IsDeleted")
+     #[Field(name: "IsDeleted")]
      */
     protected $isDeleted;
 
     /**
-     * @Salesforce\Field(name="ParentId")
+     #[Field(name: "ParentId")]
      */
     protected $parentId;
 
     /**
-     * @Salesforce\Field(name="Type")
+     #[Field(name: "Type")]
      */
     protected $type;
 

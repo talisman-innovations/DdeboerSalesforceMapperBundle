@@ -7,7 +7,7 @@
     <services>
         <service id="ddeboer_salesforce_mapper" class="Ddeboer\Salesforce\MapperBundle\Mapper">
             <argument type="service" id="phpforce.soap_client" />
-            <argument type="service" id="ddeboer_salesforce_mapper.annotation_reader" />
+            <argument type="service" id="ddeboer_salesforce_mapper.attribute_reader" />
             <argument type="service" id="ddeboer_salesforce_mapper.cache" />
             <call method="setEventDispatcher">
                 <argument type="service" id="event_dispatcher" />
@@ -17,14 +17,14 @@
         <service id="ddeboer_salesforce_mapper.bulk_saver" class="Ddeboer\Salesforce\MapperBundle\MappedBulkSaver">
             <argument type="service" id="phpforce.soap_client.bulk_saver" />
             <argument type="service" id="ddeboer_salesforce_mapper" />
-            <argument type="service" id="ddeboer_salesforce_mapper.annotation_reader" />
+            <argument type="service" id="ddeboer_salesforce_mapper.attribute_reader" />
         </service>
 
-        <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader">
+        <service id="ddeboer_salesforce_mapper.attribute_reader" class="Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader">
         </service>
 
-        <service id="ddeboer_salesforce_mapper.annotation_reader" class="Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader">
-            <argument type="service" id="annotation_reader" />
+        <!-- Legacy annotation reader support - deprecated, use attribute_reader -->
+        <service id="ddeboer_salesforce_mapper.annotation_reader" alias="ddeboer_salesforce_mapper.attribute_reader">
         </service>
 
         <service id="ddeboer_salesforce_mapper.file_cache" class="Ddeboer\Salesforce\MapperBundle\Cache\FileCache">

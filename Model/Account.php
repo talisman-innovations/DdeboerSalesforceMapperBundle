@@ -2,7 +2,9 @@
 
 namespace Ddeboer\Salesforce\MapperBundle\Model;
 
-use Ddeboer\Salesforce\MapperBundle\Annotation as Salesforce;
+use Ddeboer\Salesforce\MapperBundle\Attribute\SalesforceObject;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Field;
+use Ddeboer\Salesforce\MapperBundle\Attribute\Relation;
 use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
 
 /**
@@ -10,68 +12,46 @@ use Ddeboer\Salesforce\MapperBundle\Response\MappedRecordIterator;
  * 
  * You can extend this class to incorporate custom fields on the object.
  * 
- * @Salesforce\AnnotationObject(name="Account")
  */
+#[SalesforceObject(name: "Account")]
 class Account extends AbstractModel
 {
-    /**
-     * @var MappedRecordIterator
-     * @Salesforce\Relation(name="AccountContactRoles",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\AccountContactRole")
-     */
+    #[Relation(
+        class: AccountContactRole::class,
+        name: "AccountContactRoles"
+    )]
     protected $accountContactRoles;
 
-    /**
-     * @var float
-     * @Salesforce\Field(name="AnnualRevenue")
-     */
+    #[Field(name: "AnnualRevenue")]
     protected $annualRevenue;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="BillingCity")
-     */
+    #[Field(name: "BillingCity")]
     protected $billingCity;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="BillingCountry")
-     */
+    #[Field(name: "BillingCountry")]
     protected $billingCountry;
     
     /**
-     * @var @Salesforce\Field(name="BillingPostalCode")
+     * @var string
      */
     protected $billingPostalCode;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="BillingState")
-     */
+    #[Field(name: "BillingState")]
     protected $billingState;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="BillingStreet")
-     */
+    #[Field(name: "BillingStreet")]
     protected $billingStreet;
     
-    /**
-     * @var ResultIterator
-     * @Salesforce\Relation(name="Contacts", class="Ddeboer\Salesforce\MapperBundle\Model\Contact")
-     */
+    #[Relation(
+        class: Contact::class,
+        name: "Contacts"
+    )]
     protected $contacts = array();
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Description")
-     */
+    #[Field(name: "Description")]
     protected $description;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Fax")
-     */
+    #[Field(name: "Fax")]
     protected $fax;
     
     /**
@@ -79,16 +59,10 @@ class Account extends AbstractModel
      */
     protected $histories;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Industry")
-     */
+    #[Field(name: "Industry")]
     protected $industry;
     
-    /**
-     * @var boolean
-     * @Salesforce\Field(name="IsDeleted")
-     */
+    #[Field(name: "IsDeleted")]
     protected $isDeleted;
     
     /**
@@ -96,10 +70,7 @@ class Account extends AbstractModel
      */
     protected $jigsaw;
     
-    /**
-     * @var \DateTime
-     * @Salesforce\FIeld(name="LastActivityDate")
-     */
+    #[Field(name: "LastActivityDate")]
     protected $lastActivityDate;
     
     /**
@@ -112,10 +83,7 @@ class Account extends AbstractModel
      */
     protected $masterRecordId;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Name")
-     */
+    #[Field(name: "Name")]
     protected $name;
     
     /**
@@ -148,17 +116,14 @@ class Account extends AbstractModel
      */
     protected $opportunityPartnersTo;
     
-    /**
-     * @var User
-     * @Salesforce\Relation(field="OwnerId", name="Owner",
-     *                      class="Ddeboer\Salesforce\MapperBundle\Model\User")
-     */
+    #[Relation(
+        class: User::class,
+        field: "OwnerId",
+        name: "Owner"
+    )]
     protected $owner;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="OwnerId")
-     */
+    #[Field(name: "OwnerId")]
     protected $ownerId;
     
     /**
@@ -181,10 +146,7 @@ class Account extends AbstractModel
      */
     protected $partnersTo;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Phone")
-     */
+    #[Field(name: "Phone")]
     protected $phone;
     
     /**
@@ -212,22 +174,13 @@ class Account extends AbstractModel
      */
     protected $shares;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ShippingCity")
-     */
+    #[Field(name: "ShippingCity")]
     protected $shippingCity;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ShippingCountry")
-     */
+    #[Field(name: "ShippingCountry")]
     protected $shippingCountry;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ShippingPostalCode")
-     */
+    #[Field(name: "ShippingPostalCode")]
     protected $shippingPostalCode;
     
     /**
@@ -235,10 +188,7 @@ class Account extends AbstractModel
      */
     protected $shippingState;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="ShippingStreet")
-     */
+    #[Field(name: "ShippingStreet")]
     protected $shippingStreet;
     
     /**
@@ -251,17 +201,12 @@ class Account extends AbstractModel
      */
     protected $tasks;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Type")
-     */
+    #[Field(name: "Type")]
     protected $type;
     
-    /**
-     * @var string
-     * @Salesforce\Field(name="Website")
-     */
+    #[Field(name: "Website")]
     protected $website;
+    private $accountNumber;
 
     /**
      * Get contact roles for the account
