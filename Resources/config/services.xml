@@ -23,10 +23,6 @@
         <service id="ddeboer_salesforce_mapper.attribute_reader" class="Ddeboer\Salesforce\MapperBundle\Attribute\AttributeReader">
         </service>
 
-        <!-- Legacy annotation reader support - deprecated, use attribute_reader -->
-        <service id="ddeboer_salesforce_mapper.annotation_reader" alias="ddeboer_salesforce_mapper.attribute_reader">
-        </service>
-
         <service id="ddeboer_salesforce_mapper.file_cache" class="Ddeboer\Salesforce\MapperBundle\Cache\FileCache">
             <argument>%kernel.cache_dir%/salesforce</argument>
         </service>
