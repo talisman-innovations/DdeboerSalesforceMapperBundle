@@ -1,0 +1,29 @@
+services:
+    ddeboer_salesforce_mapper:
+        class: Ddeboer\Salesforce\MapperBundle\Mapper
+        arguments:
+            - '@phpforce.soap_client'
+            - '@ddeboer_salesforce_mapper.annotation_reader'
+            - '@ddeboer_salesforce_mapper.cache'
+        calls:
+            - [setEventDispatcher, ['@event_dispatcher']]
+
+    ddeboer_salesforce_mapper.bulk_saver:
+        class: Ddeboer\Salesforce\MapperBundle\MappedBulkSaver
+        arguments:
+            - '@phpforce.soap_client.bulk_saver'
+            - '@ddeboer_salesforce_mapper'
+            - '@ddeboer_salesforce_mapper.annotation_reader'
+
+    annotation_reader:
+        class: Doctrine\Common\Annotations\AnnotationReader
+
+    ddeboer_salesforce_mapper.annotation_reader:
+        class: Ddeboer\Salesforce\MapperBundle\Annotation\AnnotationReader
+        arguments:
+            - '@annotation_reader'
+
+    ddeboer_salesforce_mapper.file_cache:
+        class: Ddeboer\Salesforce\MapperBundle\Cache\FileCache
+        arguments:
+            - '%kernel.cache_dir%/salesforce'

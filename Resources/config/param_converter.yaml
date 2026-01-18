@@ -1,0 +1,8 @@
+services:
+    ddeboer_salesforce_mapper.param_converter:
+        class: Ddeboer\Salesforce\MapperBundle\Request\ParamConverter\SalesforceParamConverter
+        tags:
+            - { name: request.param_converter, priority: -100 }
+        arguments:
+            - '@ddeboer_salesforce_mapper'
+            - '%ddeboer_salesforce_mapper.param_converter%'

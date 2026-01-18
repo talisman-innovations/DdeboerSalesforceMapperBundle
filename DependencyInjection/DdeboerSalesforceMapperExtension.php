@@ -22,8 +22,8 @@ class DdeboerSalesforceMapperExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yaml');
 
         if (isset($config['cache_driver'])) {
             switch ($config['cache_driver']) {
@@ -36,7 +36,7 @@ class DdeboerSalesforceMapperExtension extends Extension
         }
 
         if (isset($config['param_converter'])) {
-            $loader->load('param_converter.xml');
+            $loader->load('param_converter.yaml');
             $container->setParameter('ddeboer_salesforce_mapper.param_converter', $config['param_converter']);
         }
     }
